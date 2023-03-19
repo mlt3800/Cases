@@ -18,7 +18,8 @@ export class GameUser {
         this.role = role;   
 
     }
-}
+};
+
 export interface inputSingupDTO {
 name: string;
 email: string;  

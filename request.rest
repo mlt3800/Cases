@@ -1,0 +1,24 @@
+### Cria usuario !
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    
+    
+    "name": "Mauricio ",
+    "password": "12345678",
+    "role": "HARDCORE",
+    "email": "mauricio10@game.com"
+
+
+}
+### Login de usuario
+POST http://localhost:3003/users/login 
+Content-Type: application/json
+
+{
+
+"email": "mauricio10@game.com",
+"password": "12345678"
+
+}

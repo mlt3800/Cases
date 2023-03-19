@@ -1,17 +1,19 @@
--- Active: 1679222754278@@35.226.146.116@3306@jbl-4416472-mauricio-toledo
-CREATE TABLE IF NOT EXISTS Game_Users(
-    id VARCHAR(255) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,    
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL
-)
+-- Active: 1676323408280@@35.226.146.116@3306@jbl-4416472-mauricio-toledo
+CREATE TABLE IF NOT EXISTS Game_Users (
+  id VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NOT NULL DEFAULT "HARDCORE"
+);
 
 CREATE TABLE IF NOT EXISTS Games (
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     game_type VARCHAR(255) NOT NULL,
     game_creator VARCHAR(255) NOT NULL,
-    game_description VARCHAR(255) NOT NULL
+    game_description VARCHAR(255) NOT NULL,
     game_price VARCHAR(255) NOT NULL
-)
+);
+###
+DROP TABLE "Game_Users"
