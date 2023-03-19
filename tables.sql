@@ -6,3 +6,12 @@ CREATE TABLE IF NOT EXISTS Game_Users(
     password VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL
 )
+
+CREATE TABLE IF NOT EXISTS Games (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    game_type VARCHAR(255) NOT NULL,
+    game_creator VARCHAR(255) NOT NULL,
+    game_description VARCHAR(255) NOT NULL
+    game_price VARCHAR(255) NOT NULL
+)
