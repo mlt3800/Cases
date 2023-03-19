@@ -1,5 +1,5 @@
 import { GameUsersRepository } from "../repository/UserRepository";
-import { GameUser, inputSingupDTO, UserCategory } from "../models/GameUsersDTO";
+import { GameUser, inputLoginDTO, inputSingupDTO, UserCategory } from "../models/GameUsersDTO";
 import { InvalidEmail, InvalidName, InvalidPassword, InvalidRole, EmailExist, CustomError } from "../error/CustomError";
 import { IdGenerator } from "../services/Idgenerator";
 import { HashManager } from "../services/HashManager";
@@ -40,4 +40,27 @@ return this.authenticator.generateToken({id,role})
     } catch (error:any) {
         throw new CustomError(error.statusCode,error.message)
     }
-}}
+}
+async login (input:inputLoginDTO): Promise<string>{
+    try{
+        if (!input.email){
+            throw new InvalidEmail()
+        }
+        if (!input.password){
+            throw new InvalidPassword()
+        }
+        const emailExist:any = await this.userDatabase.getUser("email", input.email)
+        if (!EmailExist){
+            throw new InvalidEmail()
+        }
+      const compareHash = await this.hashManager.compareHash(input.password, emailExist.password)
+      if (!compareHash){
+        throw new InvalidPassword()
+      }
+      const token = this.authenticator.generateToken({id:emailExist.id,role:emailExist.role})
+      return token
+    } catch (error:any) { 
+        throw new CustomError(error.statusCode,error.message)
+    }
+}
+}
